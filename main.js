@@ -6,7 +6,6 @@ import FA2Layout from "graphology-layout-forceatlas2";
 // import { animateNode } from "sigma/utils/animate";
 // import { dragNodes } from "sigma/plugins";
 
-
 let allTriples = [];  
   
 function updateThreshold(value) {
@@ -52,8 +51,6 @@ function runExtraction() {
 function drawGraph(triples) {
     const graph = new Graph({ multi: true });
     const allNodes = new Set();
-
-
   
     triples.forEach(([h, _, t]) => {
       allNodes.add(h);
