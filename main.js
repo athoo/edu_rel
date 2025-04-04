@@ -59,7 +59,7 @@ function drawGraph(triples) {
   
     const nodeList = Array.from(allNodes);
 
-    // const radius = 80;
+    const radius = 80;
 
     nodeList.forEach((node, i) => {
       const angle = (2 * Math.PI * i) / nodeList.length;
@@ -68,7 +68,7 @@ function drawGraph(triples) {
       graph.addNode(node, {
         label: node,
         x, y,
-        size: 5,
+        size: 10,
         color: '#007acc'
       });
     });
