@@ -63,11 +63,11 @@ function drawGraph(triples) {
 
     nodeList.forEach((node, i) => {
     //   const angle = (2 * Math.PI * i) / nodeList.length;
-    //   const x = radius * Math.cos(angle);
-    //   const y = radius * Math.sin(angle);
+      const x = radius * Math.cos(angle);
+      const y = radius * Math.sin(angle);
       graph.addNode(node, {
         label: node,
-        // x, y,
+        x, y,
         size: 5,
         color: '#007acc'
       });
