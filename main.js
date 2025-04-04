@@ -1,6 +1,11 @@
 import Graph from "graphology";
 import Sigma from "sigma";
-import forceAtlas2 from "graphology-layout-forceatlas2";
+// import forceAtlas2 from "graphology-layout-forceatlas2";
+
+import FA2Layout from "graphology-layout-forceatlas2";
+// import { animateNode } from "sigma/utils/animate";
+// import { dragNodes } from "sigma/plugins";
+
 
 let allTriples = [];  
   
@@ -44,10 +49,11 @@ function runExtraction() {
     });
 }
 
-
 function drawGraph(triples) {
-    const graph = new graphology.MultiGraph();
+    const graph = new Graph({ multi: true });
     const allNodes = new Set();
+
+
   
     triples.forEach(([h, _, t]) => {
       allNodes.add(h);
@@ -56,15 +62,6 @@ function drawGraph(triples) {
   
     const nodeList = Array.from(allNodes);
     const radius = 150;
-
-    // nodeList.forEach((node) => {
-    //     graph.addNode(node, {
-    //       label: node,
-    //       size: 10,
-    //       color: '#007acc'
-    //       // 注意：不设 x/y，由 ForceAtlas2 自动生成
-    //     });
-    //   });
 
     nodeList.forEach((node, i) => {
       const angle = (2 * Math.PI * i) / nodeList.length;
@@ -85,16 +82,19 @@ function drawGraph(triples) {
         color: '#888'
       });
     });
-    // const settings = forceAtlas2.inferSettings(graph);
-    // forceAtlas2.assign(graph, { settings, iterations: 300 });  // 300 可调
-  
+
+    FA2Layout.assign(graph, {
+        iterations: 300, // 或者用 layout supervisor 动态刷新
+        settings: FA2Layout.inferSettings(graph),
+      });
+
     const container = document.getElementById("graph-container");
     container.innerHTML = "";
-    const renderer = new window.Sigma(graph, container, {
+    const renderer = new Sigma(graph, container, {
         renderEdgeLabels: true 
       });
-    // const renderer = new window.Sigma(graph, container);
-  
+
+    // dragNodes(renderer, graph);
     // 🔹 添加悬停高亮功能
     const hoveredNode = { id: null };
     renderer.on('enterNode', ({ node }) => {
@@ -121,3 +121,7 @@ function drawGraph(triples) {
   }
 
 window.onload = runExtraction;
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("extract-button").addEventListener("click", runExtraction);
+  });
