@@ -121,4 +121,9 @@ window.onload = runExtraction;
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("extract-button").addEventListener("click", runExtraction);
+
+    const slider = document.getElementById("threshold");
+    slider.addEventListener("input", (e) => {
+      updateThreshold(e.target.value);
+    });    
   });
