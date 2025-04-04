@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relation Extraction Graph Demo</title>
+  <script src="https://unpkg.com/graphology@0.25.1/dist/graphology.umd.min.js"></script>
+  <script src="https://unpkg.com/sigma@2.3.0/build/sigma.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/graphology-layout-forceatlas2/worker.min.js"></script>
+  <script>
+    const forceAtlas2 = window.forceAtlas2;
+  </script>
+  <script type="module" src="main.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #f7f7f7; }
+    #app { padding: 1rem; max-width: 900px; margin: auto; }
+    #graph-container { width: 100%; height: 500px; border: 1px solid #ccc; margin-top: 1rem; background: #fff; }
+    textarea { width: 100%; height: 100px; padding: 0.5rem; font-size: 1rem; }
+    button { margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 5px; }
+    ul { margin-top: 1rem; }
+    li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+
+  <!-- <div id="graph-container" style="width: 100%; height: 600px;"></div> -->
+
+  <div id="app">
+
+    <h2>Relation Extraction for Education Materials (Demo)</h2>
+    <textarea id="text-input">Inflammation is a response to infection or injury. Tissue damage leads to inflammation. Macrophages release cytokines to signal immune cells.</textarea>
+    <br>
+    <button onclick="runExtraction()">Extract Relations</button>
+    <label for="threshold">Relation confidence ≥ <span id="threshold-value">0.5</span></label>
+    <input type="range" id="threshold" min="0" max="1" step="0.01" value="0.5" oninput="updateThreshold(this.value)">
+    <div id="graph-container"></div>
+
+    <ul id="triple-list"></ul>
+  </div>
+
+  <!-- <script>
+ 
+  </script> -->
+
+</body>
+</html>
