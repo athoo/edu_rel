@@ -17,7 +17,7 @@ function updateThreshold(value) {
 
 function runExtraction() {
   const text = document.getElementById("text-input").value;
-  console.log("Input text:", text);
+//   console.log("Input text:", text);
   fetch("http://hubwork192.ischool.illinois.edu:8000/extract_doc_original", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -58,16 +58,17 @@ function drawGraph(triples) {
     });
   
     const nodeList = Array.from(allNodes);
-    const radius = 150;
+
+    // const radius = 80;
 
     nodeList.forEach((node, i) => {
-      const angle = (2 * Math.PI * i) / nodeList.length;
-      const x = radius * Math.cos(angle);
-      const y = radius * Math.sin(angle);
+    //   const angle = (2 * Math.PI * i) / nodeList.length;
+    //   const x = radius * Math.cos(angle);
+    //   const y = radius * Math.sin(angle);
       graph.addNode(node, {
         label: node,
-        x, y,
-        size: 10,
+        // x, y,
+        size: 5,
         color: '#007acc'
       });
     });
@@ -117,12 +118,13 @@ function drawGraph(triples) {
     });
   }
 
-window.onload = runExtraction;
+// window.onload = runExtraction;
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("extract-button").addEventListener("click", runExtraction);
 
     const slider = document.getElementById("threshold");
+    
     slider.addEventListener("input", (e) => {
       updateThreshold(e.target.value);
     });    
