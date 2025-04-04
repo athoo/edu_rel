@@ -6,6 +6,9 @@ export default defineConfig({
     host: true, 
     port: 5173,
     strictPort: true, 
-    cors: true  
+    cors: true,
+    allowedHosts:[
+        'hubwork192.ischool.illinois.edu'
+    ]
   }
 });
