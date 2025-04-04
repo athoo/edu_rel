@@ -62,7 +62,7 @@ function drawGraph(triples) {
     // const radius = 80;
 
     nodeList.forEach((node, i) => {
-    //   const angle = (2 * Math.PI * i) / nodeList.length;
+      const angle = (2 * Math.PI * i) / nodeList.length;
       const x = radius * Math.cos(angle);
       const y = radius * Math.sin(angle);
       graph.addNode(node, {
